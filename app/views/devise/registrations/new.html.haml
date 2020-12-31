@@ -1,0 +1,27 @@
+= image_tag 'Login-page-pic.png', class: 'loginPage'
+.container
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label :account, class:'font_small'
+      %br/
+      = f.text_field :account_name, autofocus: true, class: 'text'
+    .field
+      = f.label :email, class:'font_small'
+      %br/
+      = f.email_field :email, autocomplete: "email", class: 'text'
+    .field
+      = f.label :password, class:'font_small'
+      - if @minimum_password_length
+        %em.font_small
+          (#{@minimum_password_length} characters minimum)
+      %br/
+      = f.password_field :password, autocomplete: "new-password", class: 'text'
+    .field
+      = f.label :password_confirmation, class:'font_small'
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: 'text'
+    .actions_signUp
+      = f.submit "CREATE ACCOUNT", class: 'btn-primary'
+  .pageTransition.font_small
+    = link_to "Sign in?", new_session_path(resource_name)
